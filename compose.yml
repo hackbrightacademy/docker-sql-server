@@ -1,0 +1,16 @@
+services:
+  mssql:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 1433:1433
+    environment:
+      - SA_PASSWORD=Test1234
+      - DEV_USER=dev
+    volumes:
+      - mssql-volume:/var/opt/mssql
+      - ./src:/src
+    restart: unless-stopped
+volumes:
+  mssql-volume:

@@ -1,0 +1,33 @@
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Contents of src folder
+src/*
+!src/README.md
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.*
+
+# SQL Server backup and data files
+*.bak
+*.mdf
+*.ldf
+
+# Ignore local scripts or temp files
+*.tmp
+*.temp
+*.bak
+
+# Docker
+*.pid

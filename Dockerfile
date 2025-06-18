@@ -1,6 +1,4 @@
-# If you're running this on a Silicon Mac, you'll get a warning that the image's platform
-# doesn't match the detected host platform, but it's safe to ignore.
-FROM mcr.microsoft.com/mssql/server:2022-latest
+FROM --platform=linux/amd64 mcr.microsoft.com/mssql/server:2022-latest
 
 USER root
 ENV ACCEPT_EULA=Y

@@ -1,5 +1,24 @@
 # 🐳 SQL Server Linux with Docker
 
+A Docker Compose configuration for running SQL Server for Linux with Full Text Search
+enabled. Also includes the AdventureWorks sample database.
+
+## Contents <!-- omit in toc -->
+
+- [Prerequisites](#prerequisites)
+- [Quickstart](#quickstart)
+- [Container features](#container-features)
+  - [Data persistence](#data-persistence)
+  - [Sharing files between your machine and the container](#sharing-files-between-your-machine-and-the-container)
+  - [The `dev` user](#the-dev-user)
+  - [AdventureWorks sample database](#adventureworks-sample-database)
+  - [Full Text Search](#full-text-search)
+- [Configuration](#configuration)
+  - [Customizing the username and password](#customizing-the-username-and-password)
+  - [Customizing the shared folder](#customizing-the-shared-folder)
+- [Troubleshooting](#troubleshooting)
+  - [Have you tried turning it off and on again?](#have-you-tried-turning-it-off-and-on-again)
+
 ## Prerequisites
 
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/)
@@ -30,7 +49,8 @@ sqlcmd -U dev -P Test1234 -C
 
 > [!TIP]
 > Not sure if the database server is ready? You can check the container's logs to monitor
-> its progress either in Docker Desktop or by running `docker logs mssql -f`.
+> its progress either in Docker Desktop or by running `docker logs mssql -f`. You'll know
+> it's ready when you see the message `*** SQL Server is ready! ***`.
 
 ## Container features
 
@@ -55,7 +75,7 @@ You'll still have all the permissions you need to do whatever you want with the 
 
 ### AdventureWorks sample database
 
-The container will automatically create the **AdventureWorks** sample database for you,
+The container will automatically create the AdventureWorks sample database for you,
 including all the tables and data using the files in `adventure-works/`.
 
 These files are a copy of [the original
@@ -63,10 +83,18 @@ files](https://github.com/microsoft/sql-server-samples/tree/master/samples/datab
 from (microsoft/sql-server-samples)[https://github.com/microsoft/sql-server-samples], with
 some modifications to make them work with SQL Server for Linux.
 
+To run queries against the database:
+
+```sql
+USE AdventureWorks;
+SELECT TOP 5 FirstName, LastName FROM Person.Person;
+GO
+```
+
 ### Full Text Search
 
 Full Text Search is enabled in the container. You probably won't need to use it, but the
-**AdventureWorks** sample database makes use of it so why not? 🤷
+AdventureWorks sample database makes use of it so why not? 🤷
 
 ## Configuration
 
@@ -80,7 +108,7 @@ services:
   mssql:
     # ...
     environment:
-      - SA_PASSWORD=your-custom-password
+      - MSSQL_SA_PASSWORD=your-custom-password
       - DEV_USER=your-custom-username
 ```
 
@@ -100,4 +128,14 @@ services:
     # ...
     volumes:
       - /path/to/a/folder/on/your/machine:/src
+```
+
+## Troubleshooting
+
+### Have you tried turning it off and on again?
+
+If things aren't working, try restarting the container and see if that fixes it.
+
+```
+docker compose -p mssql restart
 ```

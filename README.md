@@ -80,7 +80,7 @@ including all the tables and data using the files in `adventure-works/`.
 
 These files are a copy of [the original
 files](https://github.com/microsoft/sql-server-samples/tree/master/samples/databases/adventure-works)
-from (microsoft/sql-server-samples)[https://github.com/microsoft/sql-server-samples], with
+from [microsoft/sql-server-samples])(https://github.com/microsoft/sql-server-samples), with
 some modifications to make them work with SQL Server for Linux.
 
 To run queries against the database:

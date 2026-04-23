@@ -27,5 +27,6 @@ fi
 
 # Run the setup script to create the DB and the schema in the DB
 /opt/mssql-tools18/bin/sqlcmd -U sa -P $MSSQL_SA_PASSWORD -C -i /setup/config/adventure-works/instawdb.sql -o /dev/stdout
+/opt/mssql-tools18/bin/sqlcmd -U sa -P $MSSQL_SA_PASSWORD -C -i /setup/config/northwind/instnwdb.sql -o /dev/stdout
 
 echo "*** SQL Server is ready! ***"

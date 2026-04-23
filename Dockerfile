@@ -29,6 +29,7 @@ WORKDIR /setup/config
 # Copy the Adventure Works database files
 # (This is done in a separate layer for caching purposes)
 COPY adventure-works ./adventure-works
+COPY northwind ./northwind
 
 # Copy the setup scripts and make them executable
 COPY configure-db.sh entrypoint.sh .
